@@ -1,29 +1,44 @@
 
 public class CalendarDate {
 
+    /*
+     * month - integer from 1-12, represents month
+     */
     private int month;
+    /*
+     * day - integer, 1-31, 1-30, 1-28 or 1-29 depending on month/leap year
+     */
     private int day;
+    /*
+     * year - integer representing year
+     */
     private int year;
 
+    /*
+     * Default constructor for CalendarDate class
+     * Sets date to January 1st, 2018
+     */
     public CalendarDate() {
         month = 1;
         day = 1;
         year = 2018;
     }
 
+    /*
+     * Constructor for CalendarDate to set month, day, and year
+     * If inputted dates have an error, will default to January 1st, 2018
+     * @param month
+     */
     public CalendarDate(int month, int day, int year) {
-        if (isDayError(month, day, year)) {
-            // call first constructor here - how do you do that?
-            this.month = 1;
-            this.day = 1;
-            this.year = 2018;
-        } else {
+        this();
+        if (!isDayError(month, day, year)) {
             this.month = month;
             this.day = day;
             this.year = year;
         }
     }
 
+    // GETTERS
     public int getMonth() {
         return month;
     }
@@ -36,6 +51,7 @@ public class CalendarDate {
         return year;
     }
 
+    // SETTERS
     public void setMonth(int month) {
         this.month = month;
     }
@@ -48,12 +64,26 @@ public class CalendarDate {
         this.year = year;
     }
 
+    /*
+     * Input integer for year and checks for leap year
+     * @param year Integer to represent year
+     * @return boolean, true if leap year, false if not
+     */
     public boolean isLeapYear(int year) {
         return year % 4 == 0 && (year % 400 == 0 || year % 100 != 0);
     }
 
-    // consider splitting these up to use for the next/prior date thing
+    /*
+     * Checks if date from parameters is an error/nonexistent date
+     * @param month Integer to represent month
+     * @param day Integer to represent day of month
+     * @param year Integer to represent year
+     * @return boolean, true if date has an error, false if it is correct
+     */
     public boolean isDayError(int month, int day, int year) {
+        if (month <= 0 || day <= 0 || year <= 0) {
+            return true;
+        }
         if (isLeapYear(year)) {
             if (month == 2 && day > 29) {
                 return true;
@@ -77,66 +107,83 @@ public class CalendarDate {
         return month > 12;
     }
 
+    /*
+     * Finds the date one day after after this CalendarDate object
+     * @return String with the month, day, and year of the next date
+     */
     public String nextDate() {
+        int month1 = month;
+        int day1 = day;
+        int year1 = year;
         if (day < 28) {
-            day++;
+            day1++;
         } else if (month == 2) { // check if month is February
             if (isLeapYear(year)) { // check for leap year
                 if (day == 29) { // leap year, check for February 29th
-                    month++;
-                    day = 1;
-                } else {
-                    day++;
+                    month1++;
+                    day1 = 1;
+                } else { // not February 29th
+                    day1++;
                 }
             } else { // not leap year, check if day is February 28th
                 if (day == 28) {
-                    month++;
-                    day = 1;
+                    month1++;
+                    day1 = 1;
                 }
             }
         } else if (month == 12 && day == 31) { // Check if day is December 31st
-            month = 1;
-            day = 1;
-            year++;
+            month1 = 1;
+            day1 = 1;
+            year1++;
         } else if (month == 4 || month == 6 || month == 9 || month == 11) {
             if (day == 30) {
-                month++;
-                day = 1;
+                month1++;
+                day1 = 1;
             }
             // If this point is reached month must have 31 days
         } else if (day == 31) {
-            month++;
-            day = 1;
+            month1++;
+            day1 = 1;
         }
-        return this.toString();
+        return monthConverter(month1, day1, year1);
     }
 
-    // I don't know if either of these actually works - they should tho
-    // Fix both so that they don't use private data
+    /*
+     * Finds the date one day prior to this CalendarDate object
+     * @return String with the month, day, and year of the previous date
+     */
     public String prevDate() {
-        if (day != 1) {
-            day--;
-        } else if (month == 3) {
-            month = 2;
-            if (isLeapYear(year)) {
-                day = 29;
+        int month1 = month;
+        int day1 = day;
+        int year1 = year;
+        if (day != 1) { // If day isn't the 1st, subtracting by 1 is enough
+            day1--;
+        } else if (month == 3) { // Check if month is march
+            month1 = 2;
+            if (isLeapYear(year)) { // Check for leap year
+                day1 = 29;
             } else {
-                day = 28;
+                day1 = 28;
             }
+            // Months that come after 31 day-long months
         } else if (month == 2 || month == 4 || month == 6 || month == 8 || month == 9 || month == 11) {
-            day = 31;
-            month--;
-        } else if (month == 1) {
-            month = 12;
-            day = 31;
-            year--;
-        } else {
-            day = 30;
-            month--;
+            day1 = 31;
+            month1--;
+        } else if (month == 1) { // Check for January 1st
+            month1 = 12;
+            day1 = 31;
+            year1--;
+        } else { // At this point, must precede 30 day month
+            day1 = 30;
+            month1--;
         }
-        return this.toString();
+        return monthConverter(month1, day1, year1);
     }
 
+    /*
+     * Finds the what weekday this CalendarDate object falls on
+     * @return String with the given weekday
+     */
     public String weekday() {
         int year1 = this.year;
         int month1 = month;
@@ -146,10 +193,10 @@ public class CalendarDate {
         } else {
             month1 -= 2;
         }
-        int y = year1 % 100;
         String yearString = Integer.toString(year1);
         int c = Integer.parseInt(yearString.substring(0, 2));
-        int w = (day + (int) Math.floor((2.6 * month1) - .2) + y + (int) Math.floor(y / 4) + (int) Math.floor(c / 4)
+        int y = Integer.parseInt(yearString.substring(2));
+        int w = (day + (int) Math.floor((2.6 * month1) - .2) + y + (int) Math.floor((double) y / 4) + (int) Math.floor((double) c / 4)
                 - (2 * c)) % 7;
         if (w < 0) {
             w += 7;
@@ -181,7 +228,16 @@ public class CalendarDate {
         return out;
     }
 
-    public String toString() {
+    /*
+     * Converts the three integers for month, day, and year into a more readable format
+     * Format: Month name (not number), day, year
+     * Ex: January 1, 2018
+     * @param month Integer to represent month
+     * @param day Integer to represent day of month
+     * @param year Integer to represent year
+     * @return String in format Month name,day, year
+     */
+    public String monthConverter(int month, int day, int year) {
         String mn = "";
         switch (month) {
             case 1:
@@ -224,15 +280,12 @@ public class CalendarDate {
         return mn + " " + day + ", " + year;
     }
 
-    public void tester() {
-        System.out.println(this.getMonth() + "/" + this.getDay() + "/" + this.getYear());
-        System.out.println(this.toString() + ", " + this.weekday());
+    /*
+     * toString method for this CalendarDate object, calls monthConverter with private data
+     * @return String in format Month name,day, year
+     */
+    public String toString() {
+        return monthConverter(month, day, year);
     }
 
-    public static void main(String[] args) {
-        CalendarDate date = new CalendarDate(2, 28, 2020);
-        date.tester();
-        date.nextDate();
-        date.tester();
-    }
 }
