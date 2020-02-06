@@ -69,6 +69,21 @@ public class QuadraticSort {
 		}
 	}
 
+	public void quickSort() {
+		int pivot = medianOfThree(array[0], array[(array.length / 2) + 1], array[array.length - 1]);
+		
+	}
+
+	public int medianOfThree(int a, int b, int c) {
+		if ((a > b) != (a > c)) {
+			return a;
+		} else if ((b > a) != (b > c)) {
+			return b;
+		} else {
+			return c;
+		}
+	}
+
 	public String toString() {
 		return "\nArray Length: " + array.length + "\ncomparisons: " + this.getComp() + "\nswaps: " + this.getSwap();
 	}
