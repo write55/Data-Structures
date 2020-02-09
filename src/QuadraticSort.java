@@ -48,7 +48,7 @@ public class QuadraticSort {
         }
     }
 
-    public void sort() {
+    public void oldSort() {
         comp = 0;
         swap = 0;
         int n = array.length;
@@ -69,7 +69,7 @@ public class QuadraticSort {
         }
     }
 
-    public void runQuickSort() {
+    public void sort() {
         comp = 0;
         swap = 0;
         quickSort(0, array.length - 1);
@@ -143,14 +143,4 @@ public class QuadraticSort {
         System.out.println(str.toString());
     }
 
-    public static void main(String[] args) {
-        QuadraticSort arr1 = new QuadraticSort(10);
-
-        arr1.fillDescending();
-        arr1.printArray();
-        arr1.runQuickSort();
-        arr1.printArray();
-        arr1.printStats();
-
-    }
 }
