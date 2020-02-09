@@ -69,9 +69,50 @@ public class QuadraticSort {
         }
     }
 
-    public void quickSort() {
-        int pivot = medianOfThree(array[0], array[(array.length / 2) + 1], array[array.length - 1]);
+    public void runQuickSort() {
+        comp = 0;
+        swap = 0;
+        quickSort(0, array.length - 1);
+    }
 
+    public void quickSort(int low, int high) {
+        if (low < high) {
+            // find median of three for pivot
+            int mid = (low + high) / 2;
+            int median = medianOfThree(array[low], array[mid], array[high]);
+            // swap with the last for pivot
+            int temp = array[high];
+            array[high] = median;
+            if (median == array[low]) {
+                array[low] = temp;
+            } else if (median == array[mid]) {
+                array[mid] = temp;
+            }
+            // set pivot, start recursion
+            int pivot = partition(low, high);
+            quickSort(low, pivot - 1);
+            quickSort(pivot + 1, high);
+        }
+    }
+
+    public int partition(int low, int high) {
+        int pivot = array[high];
+        int i = (low - 1);
+        for (int j = low; j < high; j++) {
+            if (array[j] <= pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                swap++;
+            }
+            comp++;
+        }
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        swap++;
+        return i + 1;
     }
 
     public int medianOfThree(int a, int b, int c) {
@@ -106,15 +147,10 @@ public class QuadraticSort {
         QuadraticSort arr1 = new QuadraticSort(10);
 
         arr1.fillDescending();
-        arr1.sort();
+        arr1.printArray();
+        arr1.runQuickSort();
+        arr1.printArray();
         arr1.printStats();
 
-        arr1.fillAscending();
-        arr1.sort();
-        arr1.printStats();
-
-        arr1.fillRandom();
-        arr1.sort();
-        arr1.printStats();
     }
 }
