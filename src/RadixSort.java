@@ -1,15 +1,33 @@
+/*
+Aaron Wu
+RadixSort Program, RadixSort object class
+2/19/20
+ */
+
 import java.util.ArrayList;
 
 public class RadixSort {
 
-    int[] arr;
-    int length;
+    /**
+     * arr - the integer array to be sorted
+     */
+    private int[] arr;
+    /**
+     * length - length of arr
+     */
+    private int length;
 
+    /**
+     * Constructor for RadixSort Object, takes parameter for array length
+     *
+     * @param l Integer for length of array
+     */
     public RadixSort(int l) {
         length = l;
         arr = new int[length];
     }
 
+    // GETTERS - Setters are never used so not included
     public int[] getArr() {
         return arr;
     }
@@ -18,20 +36,22 @@ public class RadixSort {
         return length;
     }
 
-    public void setArr(int[] arr) {
-        this.arr = arr;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public void fillRandom() {
+    /**
+     * Fills array with random integers, range of 0-max
+     *
+     * @param max Integer for maximum possible random value
+     */
+    public void fillRandom(int max) {
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random() * 1000);
+            arr[i] = (int) (Math.random() * (max + 1));
         }
     }
 
+    /**
+     * returns maximum value in arr to be used later
+     *
+     * @return Integer, highest number in arr
+     */
     public int max() {
         int max = 0;
         for (int i = 0; i < length; i++) {
@@ -42,62 +62,61 @@ public class RadixSort {
         return max;
     }
 
-    public static ArrayList<Integer> bucket(int n, ArrayList<Integer> merge) {
-        ArrayList<Integer> value = new ArrayList<Integer>();
+    /**
+     * Method to create buckets for a given digit place of the values in input
+     *
+     * @param input Integer array to go through and create buckets for
+     * @param n     length of input array
+     * @param digit digit place of each number in input to be checked and sorted into buckets
+     * @return ArrayList with buckets merged in ascending order
+     */
+    public static ArrayList<Integer> bucket(int[] input, int n, int digit) {
+        ArrayList<ArrayList<Integer>> count = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> out = new ArrayList<Integer>();
+        // Fill count with empty buckets
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < merge.size(); j++) {
-                String number = Integer.toString(merge.get(j));
-                int len = number.length();
-                if (len - 1 - n >= 0) {
-                    if (number.charAt(len - 1 - n) == i) {
-                        value.add(merge.get(j));
-                        merge.remove(j);
-                    }
-                }
+            count.add(new ArrayList<>());
+        }
+        // Fill buckets
+        for (int i = 0; i < n; i++) {
+            count.get((input[i] / digit) % 10).add(input[i]);
+        }
+        // Merge buckets into input in proper order
+        for (ArrayList<Integer> bucket : count) {
+            for (Integer value : bucket) {
+                out.add(value);
             }
-            merge.addAll(value);
-            value.clear();
-        }
-        return merge;
-    }
-
-    public static void sort(RadixSort input) {
-        String number = Integer.toString(input.max());
-        int len = number.length();
-        ArrayList<Integer> in = new ArrayList<Integer>();
-        for (int num : input.getArr()) {
-            in.add(num);
-        }
-        for (int i = 0; i < len; i++) {
-            in = bucket(i, in);
-        }
-        input.setArr(convertIntegers(in));
-    }
-
-    public static int[] convertIntegers(ArrayList<Integer> input) {
-        int[] out = new int[input.size()];
-        for (int i = 0; i < out.length; i++) {
-            out[i] = input.get(i).intValue();
         }
         return out;
     }
 
+    /**
+     * Carries out Radix sort on given input array, increments the digit place for bucket
+     *
+     * @param input Integer array to be sorted
+     * @param n     length of input array
+     * @param max   maximum value in input array
+     */
+    public static void sort(int[] input, int n, int max) {
+        for (int pos = 1; max / pos > 0; pos *= 10) {
+            ArrayList<Integer> temp = bucket(input, n, pos);
+            for (int i = 0; i < n; i++) {
+                input[i] = temp.get(i);
+            }
+        }
+    }
+
+    /**
+     * Prints out arr from given RadixSort object
+     */
     public void printArray() {
         StringBuilder str = new StringBuilder("[ ");
-        for (int i = 0; i < arr.length; i++) {
-            str.append(arr[i]);
+        for (int num : arr) {
+            str.append(num);
             str.append(" ");
         }
         str.append("]");
         System.out.println(str.toString());
     }
 
-    public static void main(String[] args) {
-        RadixSort asdf = new RadixSort(10);
-        asdf.fillRandom();
-        asdf.printArray();
-        sort(asdf);
-        asdf.printArray();
-
-    }
 }
