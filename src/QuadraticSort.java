@@ -22,6 +22,10 @@ public class QuadraticSort {
         return comp;
     }
 
+    public int[] getArray() {
+        return array;
+    }
+
     public void setSwap(int swap) {
         this.swap = swap;
     }
@@ -77,43 +81,58 @@ public class QuadraticSort {
 
     public void quickSort(int low, int high) {
         if (low < high) {
+            //           int size = high - low + 1;
             // find median of three for pivot
+            int pivot;
+            //           if (size > 3) {
             int mid = (low + high) / 2;
             int median = medianOfThree(array[low], array[mid], array[high]);
-            // swap with the last for pivot
-            int temp = array[high];
-            array[high] = median;
-            if (median == array[low]) {
-                array[low] = temp;
-            } else if (median == array[mid]) {
-                array[mid] = temp;
-            }
-            // set pivot, start recursion
-            int pivot = partition(low, high);
-            quickSort(low, pivot - 1);
+            pivot = partition(low, high, median);
             quickSort(pivot + 1, high);
+            quickSort(low, pivot - 1);
+//            } else {
+//                oldSort();
+//            }
         }
     }
 
-    public int partition(int low, int high) {
-        int pivot = array[high];
-        int i = (low - 1);
-        for (int j = low; j < high; j++) {
-            if (array[j] <= pivot) {
-                i++;
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                swap++;
+    public int partition(int low, int high, int pivot) {
+        int i = low, j = high - 1;
+        while (true) {
+            while (array[++i] < pivot) {
+                comp++;
             }
-            comp++;
+            while (array[--j] > pivot) {
+                comp++;
+            }
+            if (i >= j) {
+                break;
+            } else {
+                swap(i, j);
+            }
         }
-        int temp = array[i + 1];
-        array[i + 1] = array[high];
-        array[high] = temp;
-        swap++;
-        return i + 1;
+        return i;
     }
+//
+//    public int partition(int low, int high) {
+//        int pivot = array[high];
+//        int i = (low - 1);
+//        for (int j = low; j < high; j++) {
+//            if (array[j] <= pivot) {
+//                i++;
+//                int temp = array[i];
+//                array[i] = array[j];
+//                array[j] = temp;
+//                swap++;
+//            }
+//            comp++;
+//        }
+//        int temp = array[i + 1];
+//        array[i + 1] = array[high];
+//        array[high] = temp;
+//        swap++;
+//        return i + 1;
+//    }
 
     public int medianOfThree(int a, int b, int c) {
         if ((a > b) != (a > c)) {
@@ -123,6 +142,13 @@ public class QuadraticSort {
         } else {
             return c;
         }
+    }
+
+    public void swap(int index1, int index2) {
+        int temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+        swap++;
     }
 
     public String toString() {
