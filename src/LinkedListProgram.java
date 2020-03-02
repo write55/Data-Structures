@@ -21,7 +21,7 @@ public class LinkedListProgram<E extends Comparable<E>> {
 		} else if (input.compareTo(front) < 0) {
 			input.setNext(front);
 			front = input;
-		} else if (input.equals(front)) { // check the equals method
+		} else if (input.equals(front)) {
 			System.out.println("Already on List");
 		} else {
 			ListNode<E> current = front;
@@ -30,8 +30,7 @@ public class LinkedListProgram<E extends Comparable<E>> {
 				previous = current;
 				current = current.getNext();
 			}
-			if (current == null) { // why does this not work without this it
-									// should be fine without this
+			if (current == null) {
 				previous.setNext(input);
 			} else if (!input.equals(current)) {
 				input.setNext(current);
@@ -70,15 +69,14 @@ public class LinkedListProgram<E extends Comparable<E>> {
 		front = null;
 	}
 
-	public void reverseList(ListNode<E> reverseThis) {
-		if (reverseThis.getNext() == null) {
-			return;
-		} else {
-			reverseList(reverseThis.getNext());
-			ListNode<E> temp = reverseThis;
-			reverseThis = reverseThis.getNext();
-			reverseThis.setNext(temp);
+	public ListNode<E> reverseList(ListNode<E> reverseThis) {
+		if (reverseThis == null || reverseThis.getNext() == null) {
+			return reverseThis;
 		}
+		ListNode<E> temp = reverseList(reverseThis.getNext());
+		reverseThis.getNext().setNext(reverseThis);
+		reverseThis.setNext(null);
+		return temp;
 	}
 
 	public void printList() {

@@ -32,4 +32,5 @@ public class ListNode<E extends Comparable<E>> implements Comparable<ListNode<E>
 	public boolean equals(ListNode<E> input) {
 		return data.equals(input.getData());
 	}
+
 }
