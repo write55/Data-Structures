@@ -1,81 +1,94 @@
 
 public class Person implements Comparable<Person> {
 
-    /**
-     *
-     */
-    private String firstName;
-    /**
-     *
-     */
-    private String lastName;
-    /**
-     *
-     */
-    private String employer;
+	/**
+	 * firstName - String to hold first name
+	 */
+	private String firstName;
+	/**
+	 * lastName - String to hold last name
+	 */
+	private String lastName;
+	/**
+	 * employer - String to hold employer
+	 */
+	private String employer;
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param employer
-     */
-    public Person(String firstName, String lastName, String employer) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.employer = employer;
-    }
+	/**
+	 * Constructor for Person object, creates new Person object with given first
+	 * name, last name, and employer
+	 * 
+	 * @param firstName
+	 *            String for new Person's first name
+	 * @param lastName
+	 *            String for new Person's last name
+	 * @param employer
+	 *            String for new Person's employer
+	 */
+	public Person(String firstName, String lastName, String employer) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.employer = employer;
+	}
 
-    // GETTERS
-    public String getFirstName() {
-        return firstName;
-    }
+	// GETTERS
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getEmployer() {
-        return employer;
-    }
+	public String getEmployer() {
+		return employer;
+	}
 
-    // SETTERS
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	// SETTERS
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setEmployer(String employer) {
-        this.employer = employer;
-    }
+	public void setEmployer(String employer) {
+		this.employer = employer;
+	}
 
-    /**
-     *
-     * @param input
-     * @return
-     */
-    public int compareTo(Person input) {
-        return this.lastName.compareTo(input.lastName);
-    }
+	/**
+	 * Compares the last names of two person objects
+	 * 
+	 * @param input
+	 *            Person object to be compared to
+	 * @return int, positive if input is before, negative if input is after
+	 */
+	public int compareTo(Person input) {
+		return this.lastName.compareTo(input.lastName);
+	}
 
-    /**
-     *
-     * @param input
-     * @return
-     */
-    public boolean equals(Person input) {
-        return this.firstName.equals(input.firstName) && this.lastName.equals(input.lastName) && this.employer.equals(input.employer);
-    }
+	/**
+	 * Checks if all three fields (first name, last name, and employer) are
+	 * equal
+	 * 
+	 * @param input
+	 *            Person object to be compared to
+	 * @return boolean, true if all three fields of a Person object are
+	 *         identical the input
+	 */
+	public boolean equals(Person input) {
+		return this.firstName.equals(input.firstName) && this.lastName.equals(input.lastName)
+				&& this.employer.equals(input.employer);
+	}
 
-    /**
-     *
-     * @return
-     */
-    public String toString() {
-        return "First Name: " + firstName + "\nLast Name: " + lastName + "\nEmployer: " + employer;
-    }
+	/**
+	 * Returns String of first name, last name, and employer in readable format
+	 * 
+	 * @return String with private data
+	 */
+	public String toString() {
+		return "First Name: " + firstName + "\nLast Name: " + lastName + "\nEmployer: " + employer;
+	}
 
 }
