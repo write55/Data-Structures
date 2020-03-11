@@ -53,6 +53,10 @@ public class LinkedListProgram<E extends Comparable<E>> {
         }
     }
 
+    /**
+     *
+     * @param input
+     */
     public void forwardsAdd(ListNode<E> input) {
         ListNode<E> current = front;
         ListNode<E> previous = null;
@@ -65,11 +69,17 @@ public class LinkedListProgram<E extends Comparable<E>> {
         } else {
             input.setNext(current);
             current.setPrevious(input);
-            previous.setNext(input);
             input.setPrevious(previous);
+            if (previous != null) {
+                previous.setNext(input);
+            }
         }
     }
 
+    /**
+     *
+     * @param input
+     */
     public void backwardsAdd(ListNode<E> input) {
         ListNode<E> current = back;
         ListNode<E> previous = null;
@@ -82,8 +92,10 @@ public class LinkedListProgram<E extends Comparable<E>> {
         } else {
             input.setPrevious(current);
             current.setNext(input);
-            previous.setPrevious(input);
             input.setNext(previous);
+            if (previous != null) {
+                previous.setPrevious(input);
+            }
         }
     }
 
@@ -93,29 +105,29 @@ public class LinkedListProgram<E extends Comparable<E>> {
      *
      * @param input ListNode object to be removed if present
      */
-    public void delete(ListNode<E> input) {
-        if (front == null) {
-            System.out.println("List Empty");
-        } else if (input.equals(front)) {
-            front = front.getNext();
-        } else {
-            ListNode<E> current = front;
-            ListNode<E> previous = null;
-            while (current.getNext() != null && !input.equals(current)) {
-                previous = current;
-                current = current.getNext();
-            }
-            if (input.equals(current)) {
-                if (current.getNext() == null) {
-                    previous.setNext(null);
-                } else {
-                    previous.setNext(current.getNext());
-                }
-            } else {
-                System.out.println("Not on List");
-            }
-        }
-    }
+//    public void delete(ListNode<E> input) {
+//        if (front == null) {
+//            System.out.println("List Empty");
+//        } else if (input.equals(front)) {
+//            front = front.getNext();
+//        } else {
+//            ListNode<E> current = front;
+//            ListNode<E> previous = null;
+//            while (current.getNext() != null && !input.equals(current)) {
+//                previous = current;
+//                current = current.getNext();
+//            }
+//            if (input.equals(current)) {
+//                if (current.getNext() == null) {
+//                    previous.setNext(null);
+//                } else {
+//                    previous.setNext(current.getNext());
+//                }
+//            } else {
+//                System.out.println("Not on List");
+//            }
+//        }
+//    }
 
     /**
      * Clears the entire linked list
@@ -131,16 +143,16 @@ public class LinkedListProgram<E extends Comparable<E>> {
      * @param reverseThis front ListNode of the linked list to be reversed
      * @return ListNode object, only used in the method for recursion
      */
-    public ListNode<E> reverseList(ListNode<E> reverseThis) {
-        if (reverseThis == null || reverseThis.getNext() == null) {
-            front = reverseThis;
-            return reverseThis;
-        }
-        ListNode<E> temp = reverseList(reverseThis.getNext());
-        reverseThis.getNext().setNext(reverseThis);
-        reverseThis.setNext(null);
-        return temp;
-    }
+//    public ListNode<E> reverseList(ListNode<E> reverseThis) {
+//        if (reverseThis == null || reverseThis.getNext() == null) {
+//            front = reverseThis;
+//            return reverseThis;
+//        }
+//        ListNode<E> temp = reverseList(reverseThis.getNext());
+//        reverseThis.getNext().setNext(reverseThis);
+//        reverseThis.setNext(null);
+//        return temp;
+//    }
 
     /**
      * Prints out the linked list in a readable format
@@ -149,27 +161,26 @@ public class LinkedListProgram<E extends Comparable<E>> {
         if (front == null && back == null) {
             System.out.println("List is Empty");
         } else {
-            System.out.print("[ ");
             ListNode<E> n = front;
             while (n != null) {
-                System.out.print(n.getData() + " ");
+                System.out.println(n.getData().toString() + "\n");
                 n = n.getNext();
             }
-            System.out.println("]");
         }
     }
 
+    /**
+     *
+     */
     public void printReverseList() {
         if (front == null && back == null) {
             System.out.println("List is Empty");
         } else {
-            System.out.print("[ ");
             ListNode<E> n = back;
             while (n != null) {
-                System.out.print(n.getData() + " ");
+                System.out.println(n.getData().toString() + "\n");
                 n = n.getPrevious();
             }
-            System.out.println("]");
         }
 
     }
