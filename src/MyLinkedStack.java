@@ -1,25 +1,38 @@
 
 import java.util.EmptyStackException;
 
-public class MyLinkedStack<E> implements MyStack<E> {
- 
+public class MyLinkedStack<E extends Comparable<E>> implements MyStack<E> {
+
+	private MyNode<E> topOfStackRef;
+
+	public MyLinkedStack() {
+		topOfStackRef = null;
+	}
+
 	public void push(E obj) {
-		// TODO Auto-generated method stub
+		topOfStackRef = new MyNode<E>(obj, topOfStackRef);
 	}
 
 	public E peek() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		} else {
+			return topOfStackRef.getData();
+		}
 	}
 
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		} else {
+			E result = topOfStackRef.getData();
+			topOfStackRef = topOfStackRef.getNext();
+			return result;
+		}
 	}
 
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return topOfStackRef == null;
 	}
 
 }
