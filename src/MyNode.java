@@ -6,18 +6,18 @@ public class MyNode<E extends Comparable<E>> implements Comparable<MyNode<E>> {
 	 */
 	private E data;
 	/**
-	 * next - reference to the next ListNode in the linked list
+	 * next - reference to the next OLD.ListNode in the linked list
 	 */
 	private MyNode<E> next;
 
 	/**
-	 * Constructor for a ListNode object, takes parameters for data and the next
-	 * ListNode
+	 * Constructor for a OLD.ListNode object, takes parameters for data and the next
+	 * OLD.ListNode
 	 *
 	 * @param input
-	 *            generic to set data for this ListNode
+	 *            generic to set data for this OLD.ListNode
 	 * @param next
-	 *            ListNode object, reference to next ListNode
+	 *            OLD.ListNode object, reference to next OLD.ListNode
 	 */
 	public MyNode(E input, MyNode<E> next) {
 		this.data = input;
@@ -43,11 +43,11 @@ public class MyNode<E extends Comparable<E>> implements Comparable<MyNode<E>> {
 	}
 
 	/**
-	 * Compares one ListNode object's to another's data using Java's compareTo
+	 * Compares one OLD.ListNode object's to another's data using Java's compareTo
 	 * method
 	 *
 	 * @param input
-	 *            ListNode object to be compared to
+	 *            OLD.ListNode object to be compared to
 	 * @return int, positive if input is less, negative if input is greater
 	 */
 	public int compareTo(MyNode<E> input) {

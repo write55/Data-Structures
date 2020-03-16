@@ -1,6 +1,6 @@
-/*
+package OLD;/*
 Aaron Wu
-RadixSort Program, RadixSort object class
+OLD.RadixSort Program, OLD.RadixSort object class
 2/19/20
  */
 
@@ -18,7 +18,7 @@ public class RadixSort {
     private int length;
 
     /**
-     * Constructor for RadixSort Object, takes parameter for array length
+     * Constructor for OLD.RadixSort Object, takes parameter for array length
      *
      * @param l Integer for length of array
      */
@@ -83,9 +83,7 @@ public class RadixSort {
         }
         // Merge buckets into input in proper order
         for (ArrayList<Integer> bucket : count) {
-            for (Integer value : bucket) {
-                out.add(value);
-            }
+            out.addAll(bucket);
         }
         return out;
     }
@@ -107,7 +105,7 @@ public class RadixSort {
     }
 
     /**
-     * Prints out arr from given RadixSort object
+     * Prints out arr from given OLD.RadixSort object
      */
     public void printArray() {
         StringBuilder str = new StringBuilder("[ ");

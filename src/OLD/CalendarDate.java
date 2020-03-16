@@ -1,7 +1,7 @@
-/*
+package OLD;/*
  * Aaron Wu
  * 1/27/20
- * 1.1 CalendarDate program
+ * 1.1 OLD.CalendarDate program
  */
 
 public class CalendarDate {
@@ -20,7 +20,7 @@ public class CalendarDate {
     private int year;
 
     /**
-     * Default constructor for CalendarDate class/sets date to January 1st, 2018
+     * Default constructor for OLD.CalendarDate class/sets date to January 1st, 2018
      */
     public CalendarDate() {
         month = 1;
@@ -29,7 +29,7 @@ public class CalendarDate {
     }
 
     /**
-     * Constructor for CalendarDate to set month, day, and year If dates have an
+     * Constructor for OLD.CalendarDate to set month, day, and year If dates have an
      * error, will default to January 1st, 2018
      *
      * @param month Integer to represent month
@@ -117,7 +117,7 @@ public class CalendarDate {
     }
 
     /**
-     * Finds the date one day after after this CalendarDate object
+     * Finds the date one day after after this OLD.CalendarDate object
      *
      * @return String with the month, day, and year of the next date
      */
@@ -159,7 +159,7 @@ public class CalendarDate {
     }
 
     /**
-     * Finds the date one day prior to this CalendarDate object
+     * Finds the date one day prior to this OLD.CalendarDate object
      *
      * @return String with the month, day, and year of the previous date
      */
@@ -192,7 +192,7 @@ public class CalendarDate {
     }
 
     /**
-     * Finds the what weekday this CalendarDate object falls on
+     * Finds the what weekday this OLD.CalendarDate object falls on
      *
      * @return String with the given weekday
      */
@@ -293,7 +293,7 @@ public class CalendarDate {
     }
 
     /**
-     * toString method for this CalendarDate object, calls monthConverter with
+     * toString method for this OLD.CalendarDate object, calls monthConverter with
      * private data
      *
      * @return String in format Month name,day, year

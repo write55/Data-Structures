@@ -1,27 +1,18 @@
-public class QuickSortRunner {
+package OLD;/*
+ * Aaron Wu
+ * 2/5/2020
+ * Quadratic Sort Runner
+ */
 
-	public static void sortCheck(int[] array) {
-		boolean sorted = true;
-		for (int i = 1; i < array.length; i++) {
-			if (array[i] < array[i - 1]) {
-				sorted = false;
-				break;
-			}
-		}
-		System.out.println("array sorted: " + sorted);
-	}
+public class QuadraticSortRunner {
 
 	public static void main(String[] args) {
 		QuadraticSort arr1 = new QuadraticSort(500);
 		QuadraticSort arr2 = new QuadraticSort(5000);
 		QuadraticSort arr3 = new QuadraticSort(50000);
 
-		arr1.fillRandom();
-		// arr1.printArray();
-		// sortCheck(arr1.getArray());
+		arr1.fillAscending();
 		arr1.sort();
-		// arr1.printArray();
-		// sortCheck(arr1.getArray());
 		arr1.printStats();
 
 		arr1.fillDescending();
@@ -58,3 +49,45 @@ public class QuickSortRunner {
 	}
 
 }
+
+// OUTPUT
+
+/*
+
+Array Length: 500
+comparisons: 124750
+swaps: 0
+
+Array Length: 500
+comparisons: 124750
+swaps: 250
+
+Array Length: 500
+comparisons: 124750
+swaps: 490
+
+Array Length: 5000
+comparisons: 12497500
+swaps: 0
+
+Array Length: 5000
+comparisons: 12497500
+swaps: 2500
+
+Array Length: 5000
+comparisons: 12497500
+swaps: 4996
+
+Array Length: 50000
+comparisons: 1249975000
+swaps: 0
+
+Array Length: 50000
+comparisons: 1249975000
+swaps: 25000
+
+Array Length: 50000
+comparisons: 1249975000
+swaps: 49987
+
+*/

@@ -1,4 +1,4 @@
-/*
+package OLD;/*
  * Aaron Wu
  * 2/5/2020
  * Quadratic Sort Assignment
@@ -140,8 +140,8 @@ public class QuadraticSort {
 
 	public void printArray() {
 		StringBuilder str = new StringBuilder("[ ");
-		for (int i = 0; i < array.length; i++) {
-			str.append(array[i]);
+		for (int value : array) {
+			str.append(value);
 			str.append(" ");
 		}
 		str.append("]");
