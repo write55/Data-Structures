@@ -2,11 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class MyStackRunner {
+public class PostFixRunner {
 
     public static void readFile(MyLinkedStack<String> stack) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -46,7 +44,7 @@ public class MyStackRunner {
                             stack.push(Integer.toString(a / b));
                             break;
                         default:
-                            System.out.println("fuk");
+                            System.out.println("Error");
                             break;
                     }
                 } catch (Exception ArithmeticException) {
