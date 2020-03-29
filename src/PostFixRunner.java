@@ -6,7 +6,8 @@ import java.util.StringTokenizer;
 
 public class PostFixRunner {
 
-    public static void readFile(MyLinkedStack<String> stack) throws IOException {
+    // remove this and make it read one string at a time
+    public static void readFile(MyLinkedStack<Integer> stack) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Enter relative path of file: ");
         FileReader readFile = new FileReader(in.readLine());
@@ -21,27 +22,26 @@ public class PostFixRunner {
         inFile.close();
     }
 
-    public static void run(String input, MyLinkedStack<String> stack) {
+    public static void run(String input, MyLinkedStack<Integer> stack) {
         StringTokenizer st = new StringTokenizer(input);
         while (st.hasMoreTokens()) {
             String current = st.nextToken();
             if (current.length() == 1 && !Character.isDigit(current.charAt(0))) {
-                // what happens if the order of operators is fucked an the stack is empty so there's nothing to pop here
                 try {
-                    int b = Integer.parseInt(stack.pop());
-                    int a = Integer.parseInt(stack.pop());
+                    int b = stack.pop();
+                    int a = stack.pop();
                     switch (current) {
                         case "+":
-                            stack.push(Integer.toString(a + b));
+                            stack.push(a + b);
                             break;
                         case "-":
-                            stack.push(Integer.toString(a - b));
+                            stack.push(a - b);
                             break;
                         case "*":
-                            stack.push(Integer.toString(a * b));
+                            stack.push(a * b);
                             break;
                         case "/":
-                            stack.push(Integer.toString(a / b));
+                            stack.push(a / b);
                             break;
                         default:
                             System.out.println("Error");
@@ -51,13 +51,13 @@ public class PostFixRunner {
                     System.out.println("Arithmetic error, try again");
                 }
             } else {
-                stack.push(current);
+                stack.push(Integer.parseInt(current));
             }
         }
     }
 
     public static void main(String[] args) throws IOException {
-        MyLinkedStack<String> stack = new MyLinkedStack<String>();
+        MyLinkedStack<Integer> stack = new MyLinkedStack<Integer>();
         readFile(stack);
         try {
             System.out.println("Result: " + stack.peek());

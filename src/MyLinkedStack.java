@@ -1,7 +1,7 @@
 
 import java.util.EmptyStackException;
 
-public class MyLinkedStack<E extends Comparable<E>> implements MyStack<E> {
+public class MyLinkedStack<E> implements MyStack<E> {
 
 	private MyNode<E> topOfStackRef;
 
