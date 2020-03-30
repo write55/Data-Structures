@@ -1,27 +1,31 @@
 
 public interface MyStack<E> {
 
-	/**
-	 *
-	 * @param obj
-	 */
-	void push(E obj);
+    /**
+     * Adds an object to the top of the stack
+     *
+     * @param obj Generic object type to be added
+     */
+    void push(E obj);
 
-	/**
-	 *
-	 * @return
-	 */
-	E peek();
+    /**
+     * Returns the object stored at the top of the stack without changing the stack
+     *
+     * @return object at the top of the stack
+     */
+    E peek();
 
-	/**
-	 *
-	 * @return
-	 */
-	E pop();
+    /**
+     * Removes the object at the top of the stack and returns it
+     *
+     * @return object at the top of the stack
+     */
+    E pop();
 
-	/**
-	 *
-	 * @return
-	 */
-	boolean isEmpty();
+    /**
+     * Checks if the stack is empty
+     *
+     * @return boolean, true if stack is empty
+     */
+    boolean isEmpty();
 }

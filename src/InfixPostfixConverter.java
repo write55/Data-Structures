@@ -2,11 +2,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class InfixPostfixConverter {
 
-
+    /**
+     * Method to read in file of infix strings and send to postFix converter method
+     *
+     * @throws IOException
+     */
     public static void readFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Enter relative path of file: ");
@@ -16,14 +19,20 @@ public class InfixPostfixConverter {
         String input = inFile.readLine();
         while (input != null) {
             System.out.println("Infix: " + input);
-            postFix(run(input));
+            System.out.println(PostFixRunner.postFixCalculator(infixToPostfix(input)));
             input = inFile.readLine();
         }
         System.out.println("Reading Complete.\n");
         inFile.close();
     }
 
-    public static String run(String input) {
+    /**
+     * Takes an operation in infix notation and converts it to postfix notation
+     *
+     * @param input String of operation in infix notation
+     * @return String of operation converted to postfix notation
+     */
+    public static String infixToPostfix(String input) {
         MyArrayStack<Character> operators = new MyArrayStack<Character>(input.length());
         StringBuilder convert = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
@@ -67,6 +76,8 @@ public class InfixPostfixConverter {
     }
 
     /**
+     * Takes a mathematical operator and returns its precedence as an integer, higher value is higher precedence
+     *
      * @param input Character, should be operator to check precedence
      * @return Integer value for precedence of operator, higher value is higher precedence
      */
@@ -81,52 +92,6 @@ public class InfixPostfixConverter {
             default:
                 return -1;
         }
-    }
-
-    /**
-     *
-     * @param input
-     */
-    public static void postFix(String input) {
-        System.out.println("Postfix: " + input);
-        MyArrayStack<Integer> result = new MyArrayStack<Integer>(input.length());
-        StringTokenizer st = new StringTokenizer(input);
-        while (st.hasMoreTokens()) {
-            String current = st.nextToken();
-            if (current.length() == 1 && !Character.isDigit(current.charAt(0))) {
-                try {
-                    int b = result.pop();
-                    int a = result.pop();
-                    switch (current) {
-                        case "+":
-                            result.push(a + b);
-                            break;
-                        case "-":
-                            result.push(a - b);
-                            break;
-                        case "*":
-                            result.push(a * b);
-                            break;
-                        case "/":
-                            result.push(a / b);
-                            break;
-                        default:
-                            System.out.println("Operator Error");
-                            break;
-                    }
-                } catch (Exception ArithmeticException) {
-                    System.out.println("Arithmetic error");
-                }
-            } else {
-                result.push(Integer.parseInt(current));
-            }
-        }
-        try {
-            System.out.println("Result: " + result.peek());
-        } catch (Exception EmptyStackException) {
-            System.out.println("Empty Stack, input error");
-        }
-        System.out.print("\n");
     }
 
     public static void main(String[] args) throws IOException {
