@@ -18,7 +18,6 @@ public class InfixPostfixConverter {
         System.out.println("\nReading File...\n");
         String input = inFile.readLine();
         while (input != null) {
-            System.out.println("Infix: " + input);
             System.out.println(PostFixRunner.postFixCalculator(infixToPostfix(input)));
             input = inFile.readLine();
         }
@@ -95,6 +94,6 @@ public class InfixPostfixConverter {
     }
 
     public static void main(String[] args) throws IOException {
-        readFile();
+        // readFile();
     }
 }

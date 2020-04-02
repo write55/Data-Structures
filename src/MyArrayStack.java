@@ -26,9 +26,9 @@ public class MyArrayStack<E> implements MyStack<E> {
      * @param obj Generic object type to be added
      */
     public void push(E obj) {
-//        if (topOfStack == theData.length - 1) {
-//            reallocate();
-//        }
+        if (topOfStack == theData.length - 1) {
+            reallocate();
+        }
         topOfStack++;
         theData[topOfStack] = obj;
     }
@@ -66,9 +66,12 @@ public class MyArrayStack<E> implements MyStack<E> {
         return topOfStack == -1;
     }
 
-//    private void reallocate() {
-//        E[] temp = (E[]) new Object[2 * theData.length];
-//        System.arraycopy(theData, 0, temp, 0, theData.length);
-//        theData = temp;
-//    }
+    /**
+     * When array is full, creates a new array twice the original size and moves the data to the new array
+     */
+    private void reallocate() {
+        E[] temp = (E[]) new Object[2 * theData.length];
+        System.arraycopy(theData, 0, temp, 0, theData.length);
+        theData = temp;
+    }
 }
