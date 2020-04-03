@@ -1,4 +1,6 @@
 
+// InfixQueue runs the whole project and calls the methods in this file
+
 public class OutputBuffer {
 
     /**

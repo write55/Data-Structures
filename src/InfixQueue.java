@@ -52,3 +52,52 @@ public class InfixQueue {
         out.cleanBuffer();
     }
 }
+
+// OUTPUT
+
+/*
+
+Enter relative path of file: infix.txt
+
+Reading File...
+
+Reading Complete.
+
+Infix: 9*(8-5)
+Postfix: 9 8 5 - *
+Result: 27
+
+Infix: (9-8)*5
+Postfix: 9 8 - 5 *
+Result: 5
+
+Infix: 3/(4*(5-(2+1)))
+Postfix: 3 4 5 2 1 + - * /
+Result: 0
+
+Infix: (9/3)/3
+Postfix: 9 3 / 3 /
+Result: 1
+
+Infix: 9/(3/3)
+Postfix: 9 3 3 / /
+Result: 9
+
+Infix: ((2-(3+4))-1+4*3)/7
+Postfix: 2 3 4 + - 1 - 4 3 * + 7 /
+Result: 0
+
+Infix: 5-(4+3/(2*1))
+Postfix: 5 4 3 2 1 * / + -
+Result: 0
+
+Infix: 5/(4*(3-(2+1)))
+Postfix: 5 4 3 2 1 + - * /
+Arithmetic error
+Empty Stack, input error
+
+Infix: (8+8*(4-2))*(3+5-6)
+Postfix: 8 8 4 2 - * + 3 5 + 6 - *
+Result: 48
+
+ */
