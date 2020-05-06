@@ -1,3 +1,4 @@
+package UNIT3PROJECT;
 
 import java.util.EmptyStackException;
 
@@ -18,16 +19,16 @@ public class MyLinkedStack<E> implements MyStack<E> {
     /**
      * Adds a new node to the top of the stack
      *
-     * @param obj new MyNode object to be added
+     * @param obj new UNIT3PROJECT.MyNode object to be added
      */
     public void push(E obj) {
         topOfStackRef = new MyNode<E>(obj, topOfStackRef);
     }
 
     /**
-     * Returns MyNode at top of stack without changing the stack
+     * Returns UNIT3PROJECT.MyNode at top of stack without changing the stack
      *
-     * @return Data from MyNode object at top of stack
+     * @return Data from UNIT3PROJECT.MyNode object at top of stack
      */
     public E peek() {
         if (isEmpty()) {
@@ -38,9 +39,9 @@ public class MyLinkedStack<E> implements MyStack<E> {
     }
 
     /**
-     * Removes MyNode object from top of stack and returns its data
+     * Removes UNIT3PROJECT.MyNode object from top of stack and returns its data
      *
-     * @return Data from MyNode object at top of stack
+     * @return Data from UNIT3PROJECT.MyNode object at top of stack
      */
     public E pop() {
         if (isEmpty()) {

@@ -1,5 +1,5 @@
-
-// InfixQueue runs the whole project and calls the methods in this file
+package UNIT3PROJECT;
+// UNIT3PROJECT.InfixQueue runs the whole project and calls the methods in this file
 
 public class OutputBuffer {
 

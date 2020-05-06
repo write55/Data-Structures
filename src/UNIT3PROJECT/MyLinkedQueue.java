@@ -1,3 +1,5 @@
+package UNIT3PROJECT;
+
 import java.util.NoSuchElementException;
 
 public class MyLinkedQueue<E> implements MyQueue<E> {
@@ -6,7 +8,7 @@ public class MyLinkedQueue<E> implements MyQueue<E> {
     private MyNode<E> back;
 
     /**
-     * Constructor sets both MyNode references, front and back, to null
+     * Constructor sets both UNIT3PROJECT.MyNode references, front and back, to null
      */
     public MyLinkedQueue() {
         front = null;

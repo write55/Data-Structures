@@ -1,3 +1,5 @@
+package UNIT3PROJECT;
+
 import java.util.EmptyStackException;
 
 public class MyArrayStack<E> implements MyStack<E> {
@@ -12,7 +14,7 @@ public class MyArrayStack<E> implements MyStack<E> {
     private int topOfStack = -1;
 
     /**
-     * Constructor for a new MyArrayStack object, sets the size of the stack to the given parameter
+     * Constructor for a new UNIT3PROJECT.MyArrayStack object, sets the size of the stack to the given parameter
      *
      * @param capacity integer, input for the max capacity of the stack
      */

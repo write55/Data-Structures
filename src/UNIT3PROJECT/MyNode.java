@@ -1,3 +1,4 @@
+package UNIT3PROJECT;
 
 public class MyNode<E> {
 
@@ -6,16 +7,16 @@ public class MyNode<E> {
      */
     private E data;
     /**
-     * next - reference to the next MyNode in the linked list
+     * next - reference to the next UNIT3PROJECT.MyNode in the linked list
      */
     private MyNode<E> next;
 
     /**
-     * Constructor for a MyNode object, takes parameters for data and the next
+     * Constructor for a UNIT3PROJECT.MyNode object, takes parameters for data and the next
      * OLD.ListNode
      *
-     * @param input generic to set data for this MyNode
-     * @param next  OLD.ListNode object, reference to next MyNode
+     * @param input generic to set data for this UNIT3PROJECT.MyNode
+     * @param next  OLD.ListNode object, reference to next UNIT3PROJECT.MyNode
      */
     public MyNode(E input, MyNode<E> next) {
         this.data = input;
