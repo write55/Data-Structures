@@ -1,3 +1,5 @@
 /.idea/
 /out/
-
+/.gitignore
+/script.txt
+/Infix.txt
